@@ -28,7 +28,7 @@
     },
     "autoload": {
         "psr-4": {
-            "MNHcC\\Zend3bcHelper": "src/"
+            "MNHcC\\Zend3bcHelper\\": "src/"
         }
     }
 }
