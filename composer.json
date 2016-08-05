@@ -1,0 +1,34 @@
+{
+    "name": "mnhcc/zend3bchelper",
+    "description": "A Zend Framework 3 backwards compatibility helper modul. Get many behavior from ZF 2.5 on 3",
+    "license": "GPL",
+    "version": "0.1.0-dev",
+    "keywords": [
+        "zf2",
+        "zf3",
+        "bc",
+        "backwards compatibility"
+    ],
+    "require-dev": {
+        "phpunit/phpunit": "^4.5",
+        "phpbench/phpbench": "^0.10.0"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "extra": {
+        "branch-alias": {
+            "dev-master": "0.1.0-dev"
+        }
+    },
+    "require": {
+        "php": "^5.6 || ^7.0",
+        "zendframework/zend-stdlib": "^2.7 || ^3.0",
+        "zendframework/zend-servicemanager": "^2.7.5 || ^3.0.3",
+        "zendframework/zend-eventmanager": "^2.6.2 || ^3.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "MNHcC\\Zend3bcHelper": "src/"
+        }
+    }
+}
