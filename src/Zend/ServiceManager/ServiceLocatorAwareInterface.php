@@ -1,5 +1,7 @@
 <?php
+
 /**
+ * fork from Zend framework 2.5.*
  * Zend Framework (http://framework.zend.com/)
  *
  * @link      http://github.com/zendframework/zf2 for the canonical source repository
@@ -7,25 +9,24 @@
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
-namespace Zend\ServiceManager;
+namespace Zend\ServiceManager {
 
-//\trigger_error(ServiceLocatorAwareInterface::class .
-//        ' is DEPRECATED and removed from Zend >= 3',
-//        E_USER_DEPRECATED);
 
-interface ServiceLocatorAwareInterface
-{
-    /**
-     * Set service locator
-     *
-     * @param ServiceLocatorInterface $serviceLocator
-     */
-    public function setServiceLocator(ServiceLocatorInterface $serviceLocator);
+    interface ServiceLocatorAwareInterface {
 
-    /**
-     * Get service locator
-     *
-     * @return ServiceLocatorInterface
-     */
-    public function getServiceLocator();
+        /**
+         * Set service locator
+         *
+         * @param ServiceLocatorInterface $serviceLocator
+         */
+        public function setServiceLocator(ServiceLocatorInterface $serviceLocator);
+
+        /**
+         * Get service locator
+         *
+         * @return ServiceLocatorInterface
+         */
+        public function getServiceLocator();
+    }
+
 }
