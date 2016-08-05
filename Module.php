@@ -33,7 +33,7 @@ class Module implements AutoloaderProviderInterface {
         ];
         //moore performance
         if (file_exists(__DIR__ . DS . 'autoload_classmap.php')) {
-            $config[ClassMapAutoloader::class] = [$__DIR__ . DS . 'autoload_classmap.php'];
+            $config[ClassMapAutoloader::class] = [__DIR__ . DS . 'autoload_classmap.php'];
         }
         return $config;
     }
