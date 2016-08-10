@@ -14,8 +14,9 @@
         "phpbench/phpbench": "^0.10.0"
     },
     "source": {
+        "type": "git",
         "url": "https://github.com/MNHcC/Zend3bcHelper.git",
-        "type": "git"
+        "reference": "mnhcc/zend3bchelper"
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
