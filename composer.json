@@ -16,7 +16,7 @@
     "source": {
         "type": "git",
         "url": "https://github.com/MNHcC/Zend3bcHelper.git",
-        "reference": "mnhcc/zend3bchelper"
+        "reference": "master"
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
