@@ -13,6 +13,10 @@
         "phpunit/phpunit": "^4.5",
         "phpbench/phpbench": "^0.10.0"
     },
+    "source": {
+        "url": "https://github.com/MNHcC/Zend3bcHelper.git",
+        "type": "git"
+    },
     "minimum-stability": "dev",
     "prefer-stable": true,
     "extra": {
