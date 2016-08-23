@@ -10,24 +10,12 @@
  */
 
 namespace Zend\ServiceManager {
-
+    use MNHcC\Zend3bcHelper\ServiceManager\ServiceLocatorAwareTrait as MNHcCServiceLocatorAwareTrait;
+    
     trait ServiceLocatorAwareTrait {
-
-        /**
-         * @var ServiceLocatorInterface
-         */
-        protected $serviceLocator = null;
-
-        /**
-         * Set service locator
-         *
-         * @param ServiceLocatorInterface $serviceLocator
-         * @return mixed
-         */
-        public function setServiceLocator(ServiceLocatorInterface $serviceLocator) {
-            $this->serviceLocator = $serviceLocator;
-
-            return $this;
+        
+        use  MNHcCServiceLocatorAwareTrait {
+            getServiceLocator as MNHcCServiceLocatorAwareTrait_getServiceLocator;
         }
 
         /**
@@ -39,12 +27,14 @@ namespace Zend\ServiceManager {
         public function getServiceLocator() {
             \trigger_error(sprintf(
                             'You are retrieving the service locator from within the class %s. Please be aware that '
-                            . 'ServiceLocatorAwareInterface is deprecated and will be removed in version 3.0, along '
+                            . 'ServiceLocatorAwareInterface is deprecated and is removed in version 3.0, along '
                             . 'with the ServiceLocatorAwareInitializer. You will need to update your class to accept '
                             . 'all dependencies at creation, either via constructor arguments or setters, and use '
-                            . 'a factory to perform the injections.', static::class
+                            . 'a factory to perform the injections. Or you use simple %s', 
+                            static::class, 
+                            ServiceLocatorAwareTrait::class
                     ), \E_USER_DEPRECATED);
-            return $this->serviceLocator;
+            return $this->MNHcCServiceLocatorAwareTrait_getServiceLocator();
         }
 
     }
