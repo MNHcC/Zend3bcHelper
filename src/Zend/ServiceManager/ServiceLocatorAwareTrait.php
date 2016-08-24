@@ -30,9 +30,10 @@ namespace Zend\ServiceManager {
                             . 'ServiceLocatorAwareInterface is deprecated and is removed in version 3.0, along '
                             . 'with the ServiceLocatorAwareInitializer. You will need to update your class to accept '
                             . 'all dependencies at creation, either via constructor arguments or setters, and use '
-                            . 'a factory to perform the injections. Or you use simple %s', 
+                            . 'a factory to perform the injections. Or you replace simple %s whit %s to remove this message', 
                             static::class, 
-                            ServiceLocatorAwareTrait::class
+                            ServiceLocatorAwareTrait::class,
+                            MNHcCServiceLocatorAwareTrait::class
                     ), \E_USER_DEPRECATED);
             return $this->MNHcCServiceLocatorAwareTrait_getServiceLocator();
         }
