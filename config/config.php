@@ -2,15 +2,15 @@
 
 namespace MNHcC\Zend3bcHelper {
 
-    use Zend\ServiceManager\ServiceManager;
-    use Zend\ServiceManager\ServiceLocatorAwareInterface;
-    use Zend\ServiceManager\AbstractPluginManager;
-    use Zend\ServiceManager\ServiceManagerAwareInterface;
     use Interop\Container\ContainerInterface;
+    use Zend\ServiceManager\AbstractPluginManager;
+    use Zend\ServiceManager\ServiceLocatorAwareInterface;
+    use Zend\ServiceManager\ServiceManager;
+    use Zend\ServiceManager\ServiceManagerAwareInterface;
     use MNHcC\Zend3bcHelper\ServiceManager\ServiceLocatorAwareInterface as MNHcCServiceLocatorAwareInterface;
     use MNHcC\Zend3bcHelper\ServiceManager\ServiceManagerAwareInterface as MNHcCServiceManagerAwareInterface;
 
-return [
+    return [
         'service_manager' => [ // override the default ServiceLocatorAwareInitializer and ServiceManagerAwareInitializer
             'ServiceManagerAwareInitializer' => function ($first, $second) {
                 if ($first instanceof ContainerInterface) {
