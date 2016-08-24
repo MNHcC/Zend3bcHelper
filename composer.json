@@ -49,8 +49,9 @@
     },
     "autoload": {
         "psr-4": {
-            "MNHcC\\Zend3bcHelper\\": "src/"
-        }
+            "MNHcC\\Zend3bcHelper\\": "src/MNHcC/Zend3bcHelper/",
+            "Zend\\": "src/Zend/"
+        },
     },
     "bin": [
         "bin/mnhcc_classmap_generator.php",
