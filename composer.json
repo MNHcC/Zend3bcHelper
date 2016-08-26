@@ -44,14 +44,14 @@
         "zendframework/zend-console": "^2.6 || ^3.0"
     },
     "require-dev": {
-        "phpunit/phpunit": "^4.5",
-        "phpbench/phpbench": "^0.10.0"
+        "phpunit/phpunit": "^4.5 || ^5.0",
+        "zendframework/zend-test": "^2.5"
     },
     "autoload": {
         "psr-4": {
             "MNHcC\\Zend3bcHelper\\": "src/MNHcC/Zend3bcHelper/",
             "Zend\\": "src/Zend/"
-        },
+        }
     },
     "bin": [
         "bin/mnhcc_classmap_generator.php",
