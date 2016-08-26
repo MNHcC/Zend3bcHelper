@@ -1,4 +1,12 @@
 <?php
+/**
+ * MNHcC/Zend3bcHelper https://github.com/MNHcC/Zend3bcHelper
+ *
+ * @link      https://github.com/MNHcC/Zend3bcHelper for the canonical source repository
+ * @author MNHcC  - Michael Hegenbarth (carschrotter) <mnh@mn-hegenbarth.de>
+ * @copyright 2016, MNHcC  - Michael Hegenbarth (carschrotter) <mnh@mn-hegenbarth.de>
+ * @license BSD
+ */
 
 namespace MNHcC\Zend3bcHelper {
 
@@ -10,7 +18,15 @@ namespace MNHcC\Zend3bcHelper {
     use MNHcC\Zend3bcHelper\ServiceManager\ServiceLocatorAwareInterface as MNHcCServiceLocatorAwareInterface;
     use MNHcC\Zend3bcHelper\ServiceManager\ServiceManagerAwareInterface as MNHcCServiceManagerAwareInterface;
 
-    return [
+return [
+        /**
+         * fork from Zend framework 2.5.*
+         * Zend Framework (http://framework.zend.com/)
+         *
+         * @link      http://github.com/zendframework/zf2 for the canonical source repository
+         * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+         * @license   http://framework.zend.com/license/new-bsd New BSD License
+         */
         'service_manager' => [ // override the default ServiceLocatorAwareInitializer and ServiceManagerAwareInitializer
             'ServiceManagerAwareInitializer' => function ($first, $second) {
                 if ($first instanceof ContainerInterface) {
@@ -23,6 +39,7 @@ namespace MNHcC\Zend3bcHelper {
                     $instance = $first;
                 }
 
+                //trigger error only on original ServiceManagerAwareInterface not on reimplented
                 if ($container instanceof ServiceManager && $instance instanceof ServiceManagerAwareInterface) {
                     if (!$container instanceof MNHcCServiceManagerAwareInterface) {
                         trigger_error(sprintf(
