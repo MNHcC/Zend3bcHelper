@@ -1,7 +1,7 @@
 {
     "name": "mnhcc/zend3bchelper",
     "description": "A Zend Framework 3 backwards compatibility helper modul. Get many behavior from ZF 2.5 on 3",
-    "license": "GPL",
+    "license": "BSD",
     "type": "module",
     "version": "0.4.0-dev",
     "tags": [
