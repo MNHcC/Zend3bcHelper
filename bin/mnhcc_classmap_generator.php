@@ -1,5 +1,8 @@
 #!/usr/bin/env php
 <?php
+
+namespace MNHcC\Zend3bcHelper;
+
 /**
  * forked to MNHcC\Zend3bcHelper for using on zf3
  * change var_export to php 5.4 syntax
@@ -10,10 +13,11 @@
  * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
-
+use stdClass;
 use Zend\Console;
 use Zend\File\ClassFileLocator;
 use Console\Exception\RuntimeException;
+use MNHcC\Zend3bcHelper\PHP\Modernizer;
 
 /**
  * Generate class maps for use with autoloading.
@@ -30,7 +34,6 @@ use Console\Exception\RuntimeException;
  * --ignore|-i [ <string> ]     Comma-separated namespaces to ignore
  * --sort|-s                    Alphabetically sort classes
  */
-
 // Setup/verify autoloading
 if (file_exists(__DIR__ . '/../vendor/autoload.php')) {
     // Local install
@@ -49,13 +52,13 @@ if (file_exists(__DIR__ . '/../vendor/autoload.php')) {
 $libraryPath = getcwd();
 
 $rules = array(
-    'help|h'      => 'Get usage message',
+    'help|h' => 'Get usage message',
     'library|l-s' => 'Library to parse; if none provided, assumes current directory',
-    'output|o-s'  => 'Where to write autoload file; if not provided, assumes "autoload_classmap.php" in library directory',
-    'append|a'    => 'Append to autoload file if it exists',
+    'output|o-s' => 'Where to write autoload file; if not provided, assumes "autoload_classmap.php" in library directory',
+    'append|a' => 'Append to autoload file if it exists',
     'overwrite|w' => 'Whether or not to overwrite existing autoload file',
-    'ignore|i-s'  => 'Comma-separated namespaces to ignore',
-    'sort|s'      => 'Alphabetically sort classes',
+    'ignore|i-s' => 'Comma-separated namespaces to ignore',
+    'sort|s' => 'Alphabetically sort classes',
 );
 
 try {
@@ -80,7 +83,7 @@ $relativePathForClassmap = '';
 if (isset($opts->l)) {
     if (!is_dir($opts->l)) {
         echo 'Invalid library directory provided' . PHP_EOL
-            . PHP_EOL;
+        . PHP_EOL;
         echo $opts->getUsageMessage();
         exit(2);
     }
@@ -98,19 +101,19 @@ if (isset($opts->o)) {
         $usingStdout = true;
     } elseif (is_dir($output)) {
         echo 'Invalid output file provided' . PHP_EOL
-            . PHP_EOL;
+        . PHP_EOL;
         echo $opts->getUsageMessage();
         exit(2);
     } elseif (!is_writeable(dirname($output))) {
         echo "Cannot write to '$output'; aborting." . PHP_EOL
-            . PHP_EOL
-            . $opts->getUsageMessage();
+        . PHP_EOL
+        . $opts->getUsageMessage();
         exit(2);
     } elseif (file_exists($output) && !$opts->getOption('w') && !$appending) {
         echo "Autoload file already exists at '$output'," . PHP_EOL
-            . "but 'overwrite' or 'appending' flag was not specified; aborting." . PHP_EOL
-            . PHP_EOL
-            . $opts->getUsageMessage();
+        . "but 'overwrite' or 'appending' flag was not specified; aborting." . PHP_EOL
+        . PHP_EOL
+        . $opts->getUsageMessage();
         exit(2);
     } else {
         // We need to add the $libraryPath into the relative path that is created in the classmap file.
@@ -120,7 +123,7 @@ if (isset($opts->o)) {
         if (strpos($libraryPath, $classmapPath) === 0) {
             $relativePathForClassmap = substr($libraryPath, strlen($classmapPath) + 1) . '/';
         } else {
-            $libraryPathParts  = explode('/', $libraryPath);
+            $libraryPathParts = explode('/', $libraryPath);
             $classmapPathParts = explode('/', $classmapPath);
 
             // Find the common part
@@ -159,10 +162,10 @@ $l = new ClassFileLocator($libraryPath);
 // classname => filename, where the filename is relative to the library path
 $map = new stdClass;
 foreach ($l as $file) {
-    $filename  = str_replace(DIRECTORY_SEPARATOR, '\' . DIRECTORY_SEPARATOR . \'' ,str_replace($libraryPath . '/', '', str_replace(DIRECTORY_SEPARATOR, '/', $file->getPath()) . '/' . $file->getFilename()));
+    $filename = str_replace(DIRECTORY_SEPARATOR, '\' . DIRECTORY_SEPARATOR . \'', str_replace($libraryPath . '/', '', str_replace(DIRECTORY_SEPARATOR, '/', $file->getPath()) . '/' . $file->getFilename()));
 
     // Add in relative path to library
-    $filename  = $relativePathForClassmap . $filename;
+    $filename = $relativePathForClassmap . $filename;
 
     foreach ($file->getClasses() as $class) {
         foreach ($ignoreNamespaces as $ignoreNs) {
@@ -181,7 +184,7 @@ if ($opts->getOption('s')) {
 }
 
 if ($appending) {
-    $content = create_php_map($map, true) . ';';
+    $content = Modernizer::modernizeZendPhpMap($map, true) . ';';
 
     // Prefix with __DIR__; modify the generated content
     $content = preg_replace("#(=> ')#", "=> __DIR__ . '/", $content);
@@ -203,8 +206,11 @@ if ($appending) {
     // Create a file with the class/file map.
     // Stupid syntax highlighters make separating < from PHP declaration necessary
     $content = '<' . "?php\n"
-             . "// Generated by MNHcC\Zend3bcHelper's ./bin/classmap_generator.php (forked from Zend Framework 2) \n"
-             . 'return ' . create_php_map($map, true) . ';';
+            . '// Generated by MNHcC\\Zend3bcHelper\'s '
+            . basename($_SERVER['argv'][0]) 
+            . ' (forked from Zend Framework 2) on ' 
+            . date('Y-m-d H:i:s'). PHP_EOL . PHP_EOL
+            . 'return ' . Modernizer::modernizeZendPhpMap($map, true) . ';';
 
     // Prefix with __DIR__; modify the generated content
     $content = preg_replace("#(=> ')#", "=> __DIR__ . DIRECTORY_SEPARATOR .'", $content);
@@ -244,47 +250,4 @@ file_put_contents($output, $content);
 
 if (!$usingStdout) {
     echo "Wrote classmap file to '" . realpath($output) . "'" . PHP_EOL;
-}
-
-/**
- * (PHP 5 &gt;= 5.4, PHP 7)<br/>
- * Outputs or returns a parsable string representation of a variable in modern php >= <b>5.4</b> style.
- * Source from http://stackoverflow.com/questions/24316347/how-to-format-var-export-to-php5-4-array-syntax
- * @link http://php.net/manual/en/function.var-export.php
- * @param mixed $expression <p>
- * The variable you want to export.
- * </p>
- * @param bool $return [optional] <p>
- * If used and set to <b>TRUE</b>, <b>var_export</b> will return
- * the variable representation instead of outputting it.
- * </p>
- * @return string|null the variable representation when the <i>return</i>
- * parameter is used and evaluates to <b>TRUE</b>. Otherwise, this function will
- * return <b>NULL</b>.
- */
-function var_export_short($data, $return=true)
-{
-    $dump = var_export($data, true);
-
-    $dump = preg_replace('#(?:\A|\n)([ ]*)array \(#i', '[', $dump); // Starts
-    $dump = preg_replace('#\n([ ]*)\),#', "\n$1],", $dump); // Ends
-    $dump = preg_replace('#=> \[\n\s+\],\n#', "=> [],\n", $dump); // Empties
-
-    if (gettype($data) == 'object') { // Deal with object states
-        $dump = str_replace('__set_state(array(', '__set_state([', $dump);
-        $dump = preg_replace('#\)\)$#', "])", $dump);
-    } else { 
-        $dump = preg_replace('#\)$#', "]", $dump);
-    }
-
-    if ($return===true) {
-        return $dump;
-    } else {
-        echo $dump;
-    }
-}
-
-function create_php_map($data) {
-    $data_new = var_export_short($data);
-    return preg_replace("~'([a-z][a-z0-9_\\\]+[a-z])'~i", '\\\\\1::class', $data_new);
 }
