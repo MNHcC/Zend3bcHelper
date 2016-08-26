@@ -1,5 +1,6 @@
 #!/usr/bin/env php
 <?php
+
 /**
  * Zend Framework (http://framework.zend.com/)
  *
@@ -10,9 +11,8 @@
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-
 use Zend\Console;
-use Zend\Loader\StandardAutoloader;
+use MNHcC\Zend3bcHelper\PHP\Modernizer;
 
 /**
  * Generate class maps for use with autoloading.
@@ -27,7 +27,6 @@ use Zend\Loader\StandardAutoloader;
  * --overwrite|-w               Whether or not to overwrite existing autoload
  *                              file
  */
-
 // Setup/verify autoloading
 if (file_exists(__DIR__ . '/../vendor/autoload.php')) {
     // Local install
@@ -59,11 +58,11 @@ if (!is_dir($libPath)) {
 }
 
 $rules = array(
-    'help|h'        => 'Get usage message',
-    'library|l-s'   => 'Library to parse; if none provided, assumes current directory',
-    'output|o-s'    => 'Where to write plugin map file; if not provided, assumes "plugin_classmap.php" in library directory',
-    'append|a'      => 'Append to plugin map file if it exists',
-    'overwrite|w'   => 'Whether or not to overwrite existing autoload file',
+    'help|h' => 'Get usage message',
+    'library|l-s' => 'Library to parse; if none provided, assumes current directory',
+    'output|o-s' => 'Where to write plugin map file; if not provided, assumes "plugin_classmap.php" in library directory',
+    'append|a' => 'Append to plugin map file if it exists',
+    'overwrite|w' => 'Whether or not to overwrite existing autoload file',
 );
 
 try {
@@ -105,15 +104,15 @@ if (isset($opts->o)) {
         $usingStdout = true;
     } elseif (!is_writeable(dirname($output))) {
         echo "Cannot write to '$output'; aborting." . PHP_EOL
-            . PHP_EOL
-            . $opts->getUsageMessage();
+        . PHP_EOL
+        . $opts->getUsageMessage();
         exit(2);
     } elseif (file_exists($output)) {
         if (!$opts->getOption('w') && !$appending) {
             echo "Plugin map file already exists at '$output'," . PHP_EOL
-                . "but 'overwrite' flag was not specified; aborting." . PHP_EOL
-                . PHP_EOL
-                . $opts->getUsageMessage();
+            . "but 'overwrite' flag was not specified; aborting." . PHP_EOL
+            . PHP_EOL
+            . $opts->getUsageMessage();
             exit(2);
         }
     }
@@ -131,7 +130,7 @@ if (!$usingStdout) {
 $l = new \Zend\File\ClassFileLocator($path);
 
 // Iterate over each element in the path, and create a map of pluginname => classname
-$map    = new \stdClass;
+$map = new \stdClass;
 foreach ($l as $file) {
     $namespaces = $file->getNamespaces();
     $namespace = empty($file->namespace) ? '' : $file->namespace . '\\';
@@ -150,7 +149,7 @@ foreach ($l as $file) {
 }
 
 if ($appending) {
-    $content = var_export((array) $map, true) . ';';
+    $content = Modernizer::modernizeZendPhpMap((array) $map, true) . ';';
 
     // Fix \' strings from injected DIRECTORY_SEPARATOR usage in iterator_apply op
     $content = str_replace("\\'", "'", $content);
@@ -169,10 +168,10 @@ if ($appending) {
     // Create a file with the class/file map.
     // Stupid syntax highlighters make separating < from PHP declaration necessary
     $content = '<' . "?php\n\n"
-             . "// plugin class map\n"
-             . "// auto-generated using "
-             . basename($_SERVER['argv'][0]) . ', ' . date('Y-m-d H:i:s') . "\n\n"
-             . 'return ' . var_export((array) $map, true) . ';';
+            . "// plugin class map\n"
+            . "// auto-generated using "
+            . basename($_SERVER['argv'][0]) . ', ' . date('Y-m-d H:i:s') . "\n\n"
+            . 'return ' . Modernizer::modernizeZendPhpMap((array) $map, true) . ';';
 
     // Fix \' strings from injected DIRECTORY_SEPARATOR usage in iterator_apply op
     $content = str_replace("\\'", "'", $content);
