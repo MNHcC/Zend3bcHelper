@@ -53,6 +53,9 @@
             "Zend\\": "src/Zend/"
         }
     },
+    "classmap": [
+        "src/Module.php"
+    ],
     "bin": [
         "bin/mnhcc_classmap_generator.php",
         "bin/mnhcc_pluginmap_generator.php",
