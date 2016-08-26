@@ -28,7 +28,9 @@ namespace MNHcC\Zend3bcHelper {
          * @return array the module config. Loaded from config file
          */
         public function getConfig() {
-            return include __DIR__ . DS . '../config/module.config.php';
+            $path = __DIR__ .  str_replace('/', DS, '/../../config/module.config.php');
+            if(($tmp = realpath($path))) $path = $tmp;
+            return require $path;
         }
 
         public function getAutoloaderConfig() {
