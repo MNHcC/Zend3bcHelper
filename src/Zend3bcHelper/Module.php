@@ -14,6 +14,10 @@ namespace MNHcC\Zend3bcHelper {
     use Zend\Loader\ClassMapAutoloader;
     use Zend\Loader\StandardAutoloader;
     use Zend\ModuleManager\Feature\AutoloaderProviderInterface;
+    use Zend\ModuleManager\Feature\ServiceProviderInterface;
+    use Zend\ModuleManager\Feature\ConfigProviderInterface;
+    use Zend\ModuleManager\Feature\InitProviderInterface;
+    use MNHcC\Zend3bcHelper\ServiceManager\DefaultServiceConfigProvider;
 
     const DS = \DIRECTORY_SEPARATOR;
 
@@ -22,9 +26,9 @@ namespace MNHcC\Zend3bcHelper {
      *
      * @author carschrotter
      */
-    class Module implements AutoloaderProviderInterface {
+    class Module implements AutoloaderProviderInterface, ServiceProviderInterface, ConfigProviderInterface, InitProviderInterface {
 
-        const VERSION = '0.1.0-dev';
+        const VERSION = '0.4.0-dev';
 
         /**
          * 
@@ -50,7 +54,18 @@ namespace MNHcC\Zend3bcHelper {
             }
             return $config;
         }
+        
+        public function getServiceConfig() {
+            return DefaultServiceConfigProvider::serviceConfig();
+            
+        }
+        
+        public function init(\Zend\ModuleManager\ModuleManagerInterface $manager) {
+            /* @var $manager \Zend\ModuleManager\ModuleManager */
+            //\Kint::dump( $manager->getEvent()->getConfigListener()->getMergedConfig() );
+        }
 
+    
     }
 
 }
