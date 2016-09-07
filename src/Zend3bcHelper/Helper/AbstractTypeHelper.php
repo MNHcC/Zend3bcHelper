@@ -11,14 +11,14 @@
 
 namespace MNHcC\Zend3bcHelper\Helper {
 
-    use MNHcC\Zend3bcHelper\Basic\AbstractTypeHelper;
+    use MNHcC\Zend3bcHelper\Basic\Zend3bcHelperInterface;
 
     /**
      * Description of AbstractTypeHelper
      *
      * @author carschrotter
      */
-    abstract class AbstractTypeHelper implements AbstractTypeHelper {
+    abstract class AbstractTypeHelper implements Zend3bcHelperInterface {
 
         /**
          * Check is a Removed Zend Class or Moved Namespace, reimplemented from Zend3bcHelper
@@ -29,7 +29,7 @@ namespace MNHcC\Zend3bcHelper\Helper {
          */
         public static function isZend3bcHelperClass($class_or_object) {
             $refl = new \ReflectionClass($class_or_object);
-            return (bool) $refl->isSubclassOf(AbstractTypeHelper::class) || $refl->hasConstant(static::IS_ZEND_3_BC_HELPER_CLASS);
+            return (bool) $refl->isSubclassOf(Zend3bcHelperInterface::class) || $refl->hasConstant(static::IS_ZEND_3_BC_HELPER_CLASS);
         }
 
     }
