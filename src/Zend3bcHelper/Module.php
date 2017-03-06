@@ -24,7 +24,7 @@ namespace MNHcC\Zend3bcHelper {
      */
     class Module implements AutoloaderProviderInterface {
 
-        const VERSION = '0.1.0-dev';
+        const VERSION = '0.4.3-dev';
 
         /**
          * 

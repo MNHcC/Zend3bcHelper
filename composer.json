@@ -3,7 +3,7 @@
     "description": "A Zend Framework 3 backwards compatibility helper modul. Get many behavior from ZF 2.5 on 3",
     "license": "BSD",
     "type": "module",
-    "version": "0.4.0-dev",
+    "version": "0.4.3-dev",
     "tags": [
         "zf2",
         "zf3",

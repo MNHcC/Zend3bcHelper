@@ -12,7 +12,8 @@
 namespace MNHcC\Zend3bcHelper\ServiceManager {
 
     use Zend\ServiceManager\ServiceManagerAwareInterface as ZendServiceManagerAwareInterface;
-
+    use Zend\ServiceManager\ServiceManager;
+    
     interface ServiceManagerAwareInterface extends ZendServiceManagerAwareInterface {
 
         /**
