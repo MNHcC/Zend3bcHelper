@@ -1,11 +1,19 @@
+### Status
+[![Build Status](https://travis-ci.org/MNHcC/Zend3bcHelper.svg?branch=master)](https://travis-ci.org/MNHcC/Zend3bcHelper)
+[![Coverage Status](https://coveralls.io/repos/github/MNHcC/Zend3bcHelper/badge.svg?branch=master)](https://coveralls.io/github/MNHcC/Zend3bcHelper?branch=master)
+[![Dependency Status](https://www.versioneye.com/user/projects/58bd3ff58be8c80041c62eae/badge.svg?style=flat-square)](https://www.versioneye.com/user/projects/58bd3ff58be8c80041c62eae)
 # Zend3bcHelper
 A Zend Framework 3 backwards compatibility helper modul. Get many behavior from ZF 2.5 on ZF 3
 
-using composer:
-composer.json
-<pre>{
-    ...
-
+##installation
+###composer on shell
+```shell
+composer config "repositories.MNHcC/Zend3bcHelper" vcs https://github.com/MNHcC/Zend3bcHelper.git
+composer require "MNHcC/Zend3bcHelper:*@dev"
+```
+###composer.json
+```json
+{
     "repositories": [
         {
             "type": "vcs",
@@ -16,5 +24,6 @@ composer.json
         "php": ">=5.6.0",
         "MNHcC/Zend3bcHelper": "dev-master"
     }
+}
+```
 
-}</pre>
