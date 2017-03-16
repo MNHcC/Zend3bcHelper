@@ -8,6 +8,7 @@
 
 namespace MNHcC\Zend3bcHelper\ServiceManager;
 
+use Zend\ServiceManager\ServiceLocatorInterface;
 /**
  * 
  * AbstractBcFactory is a proxy Factory that auto invoke on old ServiceManager and use the new zf 3 method

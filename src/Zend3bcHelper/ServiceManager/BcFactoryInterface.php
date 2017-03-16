@@ -17,7 +17,7 @@ use Zend\ServiceManager;
  * BcFactoryInterface extends FactoryInterface interface whit new methods of ZF 3
  * @author Michael Hegenbarth <mnh@mn-hegenbarth.de>
  */
-interface BcFactoryInterface extends ServiceManager\Factory\FactoryInterface, Basic\Zend3bcHelperInterface {
+interface BcFactoryInterface extends ServiceManager\FactoryInterface, Basic\Zend3bcHelperInterface {
     
     /**
      * Create an object
