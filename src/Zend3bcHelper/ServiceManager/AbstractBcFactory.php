@@ -20,7 +20,7 @@ abstract class AbstractBcFactory implements BcFactoryInterface {
 //        return $this($services, \preg_replace('~Factory$~', '', __CLASS__));
 //    }
     
-    public function __invoke(\Interop\Container\ContainerInterface $container, $requestedName, mixed $options = null) {
+    public function __invoke(\Interop\Container\ContainerInterface $container, $requestedName, $options = null) {
         return $this->createService($container);
     }
 
