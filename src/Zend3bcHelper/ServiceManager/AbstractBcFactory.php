@@ -15,8 +15,13 @@ namespace MNHcC\Zend3bcHelper\ServiceManager;
  */
 abstract class AbstractBcFactory implements BcFactoryInterface {
 
-    public function createService(ServiceLocatorInterface $services) {
-        return $this($services, \preg_replace('~Factory$~', '', __CLASS__));
+//    public function createService(ServiceLocatorInterface $services) {
+//        return $this($services, \preg_replace('~Factory$~', '', __CLASS__));
+//    }
+    
+    public function __invoke(\Interop\Container\ContainerInterface $container, $requestedName, mixed $options = null) {
+        return $this->createService($container);
     }
+
     
 }
