@@ -28,7 +28,7 @@ namespace MNHcC\Zend3bcHelper {
      */
     class Module implements AutoloaderProviderInterface, ServiceProviderInterface, ConfigProviderInterface, InitProviderInterface {
 
-        const VERSION = '0.6.2-dev';
+        const VERSION = '0.6.3-dev';
 
         /**
          * 

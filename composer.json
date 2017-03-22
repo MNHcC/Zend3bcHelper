@@ -3,7 +3,7 @@
     "description": "A Zend Framework 3 backwards compatibility helper modul. Get many behavior from ZF 2.5 on 3",
     "license": "BSD",
     "type": "module",
-    "version": "0.6.2-dev",
+    "version": "0.6.3-dev",
     "tags": [
         "zf2",
         "zf3",
@@ -26,7 +26,7 @@
     "prefer-stable": true,
     "extra": {
         "branch-alias": {
-            "dev-master": "0.6.2-dev"
+            "dev-master": "0.6.3-dev"
         }
     },
     "require": {
