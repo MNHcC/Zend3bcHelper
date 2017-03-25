@@ -3,7 +3,7 @@
     "description": "A Zend Framework 3 backwards compatibility helper modul. Get many behavior from ZF 2.5 on 3",
     "license": "BSD",
     "type": "module",
-    "version": "0.6.2-dev",
+    "version": "0.6.4-dev",
     "tags": [
         "zf2",
         "zf3",
@@ -56,7 +56,7 @@
     "autoload": {
         "psr-4": {
             "MNHcC\\Zend3bcHelper\\": "src/Zend3bcHelper/",
-            "Zend\\": "src/Zend/"
+            "Zend\\ServiceManager\\": "src/Zend/ServiceManager"
         }
     },
     "classmap": [
