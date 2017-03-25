@@ -14,6 +14,34 @@ namespace MNHcC\Zend3bcHelper {
     use MNHcC\Zend3bcHelper\ServiceManager\DefaultServiceConfigProvider;
 
     return [
-        'service_manager' => DefaultServiceConfigProvider::serviceConfig(),
+        'view_helpers' => [
+            'invokables' => [
+                \Zend\I18n\View\Helper\Translate::class => \Zend\I18n\View\Helper\Translate::class
+            ],
+            'aliases' => [
+                'translate' => \Zend\I18n\View\Helper\Translate::class,
+                'translator' => \Zend\I18n\View\Helper\Translate::class,
+            ],
+        ],
+        'service_manager' => DefaultServiceConfigProvider::serviceConfig([
+            [
+                'factorys' => [
+                    'translator' => function($container){
+                        if ($container->has('MvcTranslator')) {
+                            return $container->get('MvcTranslator');
+                        }
+
+                        if ($container->has(\Zend\I18n\Translator\TranslatorInterface::class)) {
+                            return $container->get(\Zend\I18n\Translator\TranslatorInterface::class);
+                        }
+
+                        if ($container->has('Translator')) {
+                            return $container->get('Translator');
+                        }
+                    },
+                 ]
+            ]
+        ]),   
+        
     ];
 }
