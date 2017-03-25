@@ -24,15 +24,23 @@ namespace MNHcC\Zend3bcHelper {
             ],
         ],
         'service_manager' => DefaultServiceConfigProvider::serviceConfig([
-            'factories' => [
-                \Zend\I18n\Translator\TranslatorInterface::class => \Zend\I18n\Translator\TranslatorServiceFactory::class,
-                'Translator' => function($sm) {
-                    return $sm->get('ViewHelperManager')->get(\Zend\I18n\View\Helper\Translate::class);
-                },
-            ],
-            'aliases' => [
-                'translator' => 'Translator',
-            ],
+            [
+                'factorys' => [
+                    'translator' => function($container){
+                        if ($container->has('MvcTranslator')) {
+                            return $container->get('MvcTranslator');
+                        }
+
+                        if ($container->has(\Zend\I18n\Translator\TranslatorInterface::class)) {
+                            return $container->get(\Zend\I18n\Translator\TranslatorInterface::class);
+                        }
+
+                        if ($container->has('Translator')) {
+                            return $container->get('Translator');
+                        }
+                    },
+                 ]
+            ]
         ]),   
         
     ];
