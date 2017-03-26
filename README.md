@@ -5,21 +5,17 @@
 # Zend3bcHelper
 A Zend Framework 3 backwards compatibility helper modul. Get many behavior from ZF 2.5 on ZF 3
 
-##installation
-###composer on shell
-```shell
+## installation
+### composer on shell
+<pre>
 ~~composer config "repositories.mnhcc/zend3bchelper" vcs https://github.com/MNHcC/Zend3bcHelper.git~~
+</pre>
+```shell
 composer require "mnhcc/zend3bchelper"
 ```
-###composer.json
+### composer.json
 ```json
 {
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/MNHcC/Zend3bcHelper.git"
-        }
-    ],
     "require": {
         "php": ">=5.6.0",
         "mnhcc/zend3bchelper": "dev-master"
