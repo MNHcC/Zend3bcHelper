@@ -47,7 +47,7 @@
         "phpunit/phpunit": "*",
         "satooshi/php-coveralls": "^1.0",
         "guzzlehttp/guzzle": "^6.2",
-        "zendframework/zend-test": "^2.5",
+        "zendframework/zend-test": "^2.5||^3.0",
         "zendframework/zend-modulemanager": "^2.7.1",
         "zendframework/zend-serializer": "^2.8",
         "zendframework/zend-math": "^2.6 || ^3.0",
@@ -58,10 +58,16 @@
             "MNHcC\\Zend3bcHelper\\": "src/Zend3bcHelper/",
             "Zend\\ServiceManager\\": "src/Zend/ServiceManager"
         }
-    },
+    },    
     "classmap": [
         "src/Module.php"
     ],
+    "autoload-dev": {
+        "psr-4": {
+            "MNHcC\\Zend3bcHelper\\Testing\\": "test/test_src/"
+        }
+    },
+
     "bin": [
         "bin/mnhcc_classmap_generator.php",
         "bin/mnhcc_pluginmap_generator.php",

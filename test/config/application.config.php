@@ -6,7 +6,7 @@
  * and open the template in the editor.
  */
 
-namespace MNHcC\Zend3bcHelper\TESTING {
+namespace MNHcC\Zend3bcHelper\Testing {
 
 // use the namespace of modules 
     use MNHcC\Zend3bcHelper;
