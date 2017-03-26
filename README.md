@@ -8,8 +8,8 @@ A Zend Framework 3 backwards compatibility helper modul. Get many behavior from 
 ##installation
 ###composer on shell
 ```shell
-composer config "repositories.MNHcC/Zend3bcHelper" vcs https://github.com/MNHcC/Zend3bcHelper.git
-composer require "MNHcC/Zend3bcHelper:*@dev"
+~~composer config "repositories.mnhcc/zend3bchelper" vcs https://github.com/MNHcC/Zend3bcHelper.git~~
+composer require "mnhcc/zend3bchelper"
 ```
 ###composer.json
 ```json
@@ -22,7 +22,7 @@ composer require "MNHcC/Zend3bcHelper:*@dev"
     ],
     "require": {
         "php": ">=5.6.0",
-        "MNHcC/Zend3bcHelper": "dev-master"
+        "mnhcc/zend3bchelper": "dev-master"
     }
 }
 ```
