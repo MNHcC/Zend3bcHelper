@@ -10,9 +10,7 @@
  */
 
 namespace MNHcC\Zend3bcHelper {
-
-    use MNHcC\Zend3bcHelper\ServiceManager\DefaultServiceConfigProvider;
-
+    
     return [
         'view_helpers' => [
             'invokables' => [
