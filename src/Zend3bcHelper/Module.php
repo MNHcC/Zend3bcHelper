@@ -57,8 +57,25 @@ namespace MNHcC\Zend3bcHelper {
         }
         
         public function getServiceConfig() {
-            return DefaultServiceConfigProvider::serviceConfig();
-            
+            return DefaultServiceConfigProvider::serviceConfig([
+                [
+                    'factorys' => [
+                        'translator' => function($container){
+                            if ($container->has('MvcTranslator')) {
+                                return $container->get('MvcTranslator');
+                            }
+
+                            if ($container->has(\Zend\I18n\Translator\TranslatorInterface::class)) {
+                                return $container->get(\Zend\I18n\Translator\TranslatorInterface::class);
+                            }
+
+                            if ($container->has('Translator')) {
+                                return $container->get('Translator');
+                            }
+                        },
+                     ]
+                ]
+            ]);
         }
         
         public function init(\Zend\ModuleManager\ModuleManagerInterface $manager) {
