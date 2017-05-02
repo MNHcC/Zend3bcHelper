@@ -62,6 +62,7 @@ namespace MNHcC\Zend3bcHelper\ServiceManager {
 
                                 //trigger error only on original ZendServiceManagerAwareInterface not on reimplented
                                 if ($container instanceof ServiceManager && $instance instanceof ZendServiceManagerAwareInterface) {
+                                    
                                     if (!$container instanceof MNHcCServiceManagerAwareInterface) {
                                         trigger_error(sprintf(
                                                         'ServiceManagerAwareInterface is deprecated and will be removed in version 3.0, along '
