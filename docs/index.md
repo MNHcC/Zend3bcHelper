@@ -1,2 +1,1 @@
-quick start guide
-
+[Quick start guide](quick-start-guide.md)
