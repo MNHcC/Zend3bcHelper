@@ -14,7 +14,7 @@ namespace Zend\ServiceManager;
 
 use MNHcC\Zend3bcHelper;
 
-if (class_exists(Zend3bcHelper\ServiceManager\ServiceLocatorAwareInterface::class)) {
+if (interface_exists(Zend3bcHelper\ServiceManager\ServiceLocatorAwareInterface::class)) {
     class_alias(Zend3bcHelper\ServiceManager\ServiceLocatorAwareInterface::class, ServiceLocatorAwareInterface::class);
 } else {
 
