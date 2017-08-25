@@ -1,7 +1,7 @@
 <?php
 
 /**
- * fork from Zend framework 2.5.*
+ * Fork from Zend framework 2.5.*
  * Zend Framework (http://framework.zend.com/)
  *
  * @link      http://github.com/zendframework/zf2 for the canonical source repository
@@ -9,19 +9,21 @@
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
-namespace Zend\ServiceManager {
+namespace Zend\ServiceManager;
+
+use MNHcC\Zend3bcHelper;
+
+if (class_exists(Zend3bcHelper\ServiceManager\ServiceManagerAwareInterface::class)) {
+    class_alias(Zend3bcHelper\ServiceManager\ServiceManagerAwareInterface::class, ServiceManagerAwareInterface::class);
+} else {
 
     /**
-     * Fork from Zend framework 2.5.* for the Zend3bcHelper
+     * alias for the original zend framework 2.5 ServiceManagerAwareInterface
+     * {@inheritdoc}
+     * @deprecated since zend framework 2.7|3.*
      */
-    interface ServiceManagerAwareInterface extends Zend3bcHelperInterface {
+    interface ServiceManagerAwareInterface extends Zend3bcHelper\ServiceManager\ServiceManagerAwareInterface {
 
-        /**
-         * Set service manager
-         *
-         * @param ServiceManager $serviceManager
-         */
-        public function setServiceManager(ServiceManager $serviceManager);
     }
 
 }

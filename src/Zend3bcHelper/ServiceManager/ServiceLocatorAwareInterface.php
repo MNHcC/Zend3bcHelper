@@ -11,10 +11,25 @@
 
 namespace MNHcC\Zend3bcHelper\ServiceManager {
 
-    use Zend\ServiceManager\ServiceLocatorAwareInterface as ZendServiceLocatorAwareInterface;
+    use MNHcC\Zend3bcHelper\Basic\Zend3bcHelperInterface;
+    use Zend\ServiceManager\ServiceLocatorInterface;
+    /**
+     * Fork from Zend framework 2.5.* for the Zend3bcHelper
+     */
+    interface ServiceLocatorAwareInterface extends Zend3bcHelperInterface {
+        /**
+         * Set service locator
+         *
+         * @param ServiceLocatorInterface $serviceLocator
+         */
+        public function setServiceLocator(ServiceLocatorInterface $serviceLocator);
 
-    interface ServiceLocatorAwareInterface extends ZendServiceLocatorAwareInterface {
-        
+        /**
+         * Get service locator
+         *
+         * @return ServiceLocatorInterface
+         */
+        public function getServiceLocator();
     }
 
 }

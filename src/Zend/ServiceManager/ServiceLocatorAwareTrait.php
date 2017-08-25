@@ -1,6 +1,7 @@
 <?php
 
 /**
+ * Fork from Zend framework 2.5.*
  * Zend Framework (http://framework.zend.com/)
  *
  * @link      http://github.com/zendframework/zf2 for the canonical source repository
@@ -13,7 +14,8 @@ namespace Zend\ServiceManager {
     use MNHcC\Zend3bcHelper\ServiceManager\ServiceLocatorAwareTrait as MNHcCServiceLocatorAwareTrait;
 
     /**
-     * Fork from Zend framework 2.5.* for the Zend3bcHelper
+     * Fork from zend framework 2.5.* for the Zend3bcHelper
+     * @deprecated since zend framework 2.7|3.*
      */
     trait ServiceLocatorAwareTrait {
 

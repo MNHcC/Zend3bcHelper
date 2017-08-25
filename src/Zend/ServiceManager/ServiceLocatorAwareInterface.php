@@ -1,34 +1,33 @@
 <?php
 
 /**
- * 
+ * Fork from Zend framework 2.5.*
  * Zend Framework (http://framework.zend.com/)
  *
  * @link      http://github.com/zendframework/zf2 for the canonical source repository
  * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright MNHcC (Michael Hegenbarth)
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
-namespace Zend\ServiceManager {
+namespace Zend\ServiceManager;
 
-    use MNHcC\Zend3bcHelper\Basic\Zend3bcHelperInterface;
+use MNHcC\Zend3bcHelper;
+
+if (class_exists(Zend3bcHelper\ServiceManager\ServiceLocatorAwareInterface::class)) {
+    class_alias(Zend3bcHelper\ServiceManager\ServiceLocatorAwareInterface::class, ServiceLocatorAwareInterface::class);
+} else {
+
     /**
-     * Fork from Zend framework 2.5.* for the Zend3bcHelper
+     * alias for the original zend framework 2.5 ServiceLocatorAwareInterface
+     * {@inheritdoc}
+     * @deprecated since zend framework 2.7|3.*
      */
-    interface ServiceLocatorAwareInterface extends Zend3bcHelperInterface {
-
-        /**
-         * Set service locator
-         *
-         * @param ServiceLocatorInterface $serviceLocator
-         */
-        public function setServiceLocator(ServiceLocatorInterface $serviceLocator);
-
-        /**
-         * Get service locator
-         *
-         * @return ServiceLocatorInterface
-         */
-        public function getServiceLocator();
+    interface ServiceLocatorAwareInterface extends Zend3bcHelper\ServiceManager\ServiceLocatorAwareInterface {
+        
     }
+
 }
+    
+    
+
