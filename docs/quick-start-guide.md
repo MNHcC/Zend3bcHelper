@@ -17,4 +17,4 @@ enable the magic in application.config.php over
     'service_manager' => MNHcC\Zend3bcHelper\ServiceManager\DefaultServiceConfigProvider::serviceConfig(),
 ///...
 ]
-```php
+```
