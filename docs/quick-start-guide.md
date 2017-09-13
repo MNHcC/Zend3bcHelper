@@ -4,6 +4,7 @@ composer require "mnhcc/zend3bchelper"
 ```
 and enable the module on your modules.config.php (>v3) or application.config.php
 ```php
+<?php
 [
 ///...
 MNHcC\Zend3bcHelper::class,
@@ -12,9 +13,10 @@ MNHcC\Zend3bcHelper::class,
 ```
 enable the magic in application.config.php over
 ```php
+<?php
 [
 ///...
     'service_manager' => MNHcC\Zend3bcHelper\ServiceManager\DefaultServiceConfigProvider::serviceConfig(),
 ///...
 ]
-```php
+```
