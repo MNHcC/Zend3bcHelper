@@ -61,7 +61,12 @@
             "MNHcC\\Zend3bcHelper\\Testing\\": "test/test_src/"
         }
     },
-
+    "extra": {
+      "zf": {
+        "module": "MNHcC\\Zend3bcHelper",
+        "config-provider": "MNHcC\\Zend3bcHelper\\ServiceManager\\DefaultServiceConfigProvider"
+      }
+    },
     "bin": [
         "bin/mnhcc_classmap_generator.php",
         "bin/mnhcc_pluginmap_generator.php",

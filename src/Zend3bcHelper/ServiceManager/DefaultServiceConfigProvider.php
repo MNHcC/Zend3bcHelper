@@ -29,6 +29,9 @@ namespace MNHcC\Zend3bcHelper\ServiceManager {
      */
     class DefaultServiceConfigProvider implements ServiceProviderInterface {
 
+        public function __invoke() {
+            return self::getServiceConfig();
+        }
         /**
          * 
          * @param array $config
